@@ -2,6 +2,10 @@
 #include "catch.hpp"
 #include "die.h"
 #include "roll.h"
+#include "shooter.h"
+#include <iostream>
+using std::cout; 
+
 TEST_CASE("Verify Test Configuration", "verification") {
 	REQUIRE(true == true);
 }
@@ -26,4 +30,13 @@ TEST_CASE("Verify Roll.roll_die() stores a value between 2 and 12")
 		roll.roll_die();
 		REQUIRE( (roll.roll_value() > 1 && roll.roll_value() < 13) );
 	}
+}
+
+TEST_CASE("Verify Shooter returns a roll between 2 and 12")
+{
+	Shooter shooter;
+	Die die1;
+	Die die2;
+	Roll* roll = shooter.throw_die(die1, die2);
+	REQUIRE( (roll->roll_value() > 1 && roll->roll_value() < 13) );
 }
